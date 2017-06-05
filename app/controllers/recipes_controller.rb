@@ -17,6 +17,20 @@ def create
     
 end
 
+def edit
+    @recipe = Recipe.find(params[:id])
+end
+
+def update
+     @recipe = Recipe.find(params[:id])
+     if @recipe.update(recipe_params)
+        flash[:success] = "Your recipe updated successfully!"
+        redirect_to recipe_path(@recipe)
+     else
+         render :edit
+     end
+end
+
 def new
     @recipe = Recipe.new
 end
